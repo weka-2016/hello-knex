@@ -14,7 +14,10 @@ function getAllStudents(callback) {
 
 //Read
 function getStudentById(id, callback) {
-  return knex.raw(`SELECT * FROM students WHERE id=${id}`).asCallback(callback)
+  return knex('students')
+    .where('id',id)
+    .select()
+    .asCallback(callback)
 }
 
 //Update
@@ -36,10 +39,10 @@ function deleteStudentById(id, callback) {
 //   console.log(res)
 // })
 //
-// getStudentById(2, function(err, res) {
-//   if (err) return console.log(err)
-//   console.log(res);
-// })
+getStudentById(2, function(err, res) {
+  if (err) return console.log(err)
+  console.log(res);
+})
 
 // //UPDATE student
 // updateStudent({id:15, name:'Jasmine'}, function(err, res) {
@@ -47,11 +50,11 @@ function deleteStudentById(id, callback) {
 //   console.log("updateStudent",res)
 // })
 
-//deleteStudentById
-deleteStudentById(14, function(err,res){
-  if (err) return console.log(err);
-  console.log("deleteStudentById",res);
-})
+// //deleteStudentById
+// deleteStudentById(14, function(err,res){
+//   if (err) return console.log(err);
+//   console.log("deleteStudentById",res);
+// })
 
 
 //Let's try out the getAllStudents function.
