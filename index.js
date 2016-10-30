@@ -15,32 +15,43 @@ function getAllStudents(callback) {
 //Read
 function getStudentById(id, callback) {
   return knex.select().from('students').where('id', id).asCallback(callback)
-
 }
 
 //Update
 function updateStudent(student, callback) {
-
+  knex('students').where({name: student.name}).update({cohort: student.cohort}).asCallback(callback)
 }
 
 //Delete
 function deleteStudentById(id, callback) {
-
+  knex('students').where('id', id).del().asCallback(callback)
 }
 
-
 //Let's try out the getAllStudents function.
-// getAllStudents(function(err, res) {
-//   if(err) return  console.log(err)
-//   console.log(res)
-// })
+getAllStudents(function(err, res) {
+  if(err) return  console.log(err)
+  console.log(res)
+})
 
-// createStudent({name:"Jasmine", cohort:"Piwakawaka-2016"}, function(err,res){
-//   if(err) return console.log(err)
-//   console.log(res)
-// })  WORKING!
+createStudent({name:"Jasmine", cohort:"Piwakawaka-2016"}, function(err,res){
+  if(err) return console.log(err)
+  console.log(res)
+})
 
 getStudentById(1, function(err, res) {
   if(err) return  console.log(err)
   console.log(res)
 })
+
+updateStudent({name:'katie', cohort: 'kokako-2014'}, function(err,res){
+   if(err) return console.log(err)
+   console.log(res)
+ })
+
+ deleteStudentById(1, function(err, res){
+   if(err) return console.log(err)
+    getAllStudents(function(err, res) {
+      if(err) return  console.log(err)
+      console.log(res)
+   })
+ })
