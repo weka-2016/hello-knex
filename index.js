@@ -30,21 +30,30 @@ function getStudentById(id, callback) {
   return knex('students').where('id', id).asCallback(callback)
 }
 
-getStudentById(3, (err, res) => {
-  console.log('The student of the above ID', res);
-})
+getStudentById(3, logIt)
 
 //Update
 function updateStudent(student, callback) {
-
+  knex('students')
+    .where('id', student.id)
+    .update({
+      name: "Tree Man"
+    }).asCallback(callback)
 }
+
+var myStudent = {id: 7}
+updateStudent(myStudent, logIt)
+
+
 
 //Delete
 function deleteStudentById(id, callback) {
 
 }
 
-getAllStudents((err, res) => {
+getAllStudents(logIt)
+
+function logIt (err, res) {
   if(err) return  console.log(err)
   console.log(res)
-})
+}
