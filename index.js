@@ -4,7 +4,7 @@ var knex = Knex(knexConfig)
 
 //Create
 function createStudent(student, callback) {
-  return knex.raw("INSERT INTO students (name, cohort) VALUES ('Katherine', 'Piwakawaka-2016')").asCallback(callback)
+  return knex.raw(`INSERT INTO students (name, cohort) VALUES ('${student.name}', '${student.cohort}')`).asCallback(callback)
 }
 
 //Read
@@ -35,7 +35,7 @@ getAllStudents(function(err, res) {
 })
 
 // createStudent FN
-createStudent(function(err, res) {
+createStudent({name: "Mel", cohort: "Piwakawaka-2016"}, function(err, res) {
   if(err) return console.log(err)
   console.log(res)
 })
