@@ -24,7 +24,7 @@ function updateStudent(student, callback) {
 
 //Delete
 function deleteStudentById(id, callback) {
-
+  return knex('students').where('id', '=', id).del().asCallback(callback)
 }
 
 
@@ -41,6 +41,10 @@ function checkIfError(err, res){
 // createStudent({name: 'Guillermo', cohort: 'Kokako'}, checkIfError)
 
 
-updateStudent({id: 2, name: 'Rodrigo', cohort: 'Piwakawaka' }, checkIfError)
+// updateStudent({id: 2, name: 'Rodrigo', cohort: 'Piwakawaka' }, checkIfError)
 
 getStudentById(2, checkIfError)
+
+deleteStudentById(2, checkIfError)
+
+getAllStudents(checkIfError)
