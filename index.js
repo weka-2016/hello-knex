@@ -14,7 +14,7 @@ function getAllStudents(callback) {
 
 //Read
 function getStudentById(id, callback) {
-
+  return knex.raw(`SELECT * FROM students WHERE id=${id}`).asCallback(callback)
 }
 
 //Update
@@ -38,4 +38,9 @@ getAllStudents(function(err, res) {
 createStudent({name: "Mel", cohort: "Piwakawaka-2016"}, function(err, res) {
   if(err) return console.log(err)
   console.log(res)
+})
+
+getStudentById(2, function(err, res) {
+  if (err) return console.log(err)
+  console.log(res);
 })
