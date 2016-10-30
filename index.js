@@ -19,7 +19,7 @@ function getStudentById(id, callback) {
 
 //Update
 function updateStudent(student, callback) {
-  return knex.raw(`UPDATE students SET name= 'Josepha' WHERE id=${id}`).asCallback(callback)
+  return knex.raw(`UPDATE students SET name='${student.name}' WHERE id=${student.id}`).asCallback(callback)
 }
 
 //Delete
@@ -28,11 +28,6 @@ function deleteStudentById(id, callback) {
 }
 
 
-//Let's try out the getAllStudents function.
-getAllStudents(function(err, res) {
-  if(err) return  console.log(err)
-  console.log(res)
-})
 
 // createStudent FN
 createStudent({name: "Ursula", cohort: "Piwakawaka-2016"}, function(err, res) {
@@ -45,8 +40,21 @@ getStudentById(2, function(err, res) {
   console.log(res);
 })
 
+//UPDATE student
+updateStudent({id:10, name:'Jasmine'}, function(err, res) {
+  if(err) return console.log(err)
+  console.log("updateStudent",res)
+})
+
 //deleteStudentById
-deleteStudentById(6, function(err,res){
+deleteStudentById(11, function(err,res){
   if (err) return console.log(err);
-  console.log(res);
+  console.log("deleteStudentById",res);
+})
+
+
+//Let's try out the getAllStudents function.
+getAllStudents(function(err, res) {
+  if(err) return  console.log(err)
+  console.log("getAllStudents",res)
 })
