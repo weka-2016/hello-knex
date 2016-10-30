@@ -4,7 +4,7 @@ var knex = Knex(knexConfig)
 
 //Create
 function createStudent(student, callback) {
-  
+  knex.insert(student).into('students').asCallback(callback)
 }
 
 //Read
@@ -14,21 +14,32 @@ function getAllStudents(callback) {
 
 //Read
 function getStudentById(id, callback) {
-  
+
 }
 
 //Update
 function updateStudent(student, callback) {
-  
+
 }
 
 //Delete
 function deleteStudentById(id, callback) {
-  
+
 }
 
+var myStudentArray = [{
+  name: "Steve",
+  cohort: "Piwakawaka-2016"
+}, {
+  name: "Mike",
+  cohort: "Piwakawaka-2015"
+}]
 
-//Let's try out the getAllStudents function.
+createStudent(myStudentArray, function(err, res){
+  if (err) return console.log(err)
+  console.log("Created Student",res)
+})
+
 getAllStudents(function(err, res) {
   if(err) return  console.log(err)
   console.log(res)
