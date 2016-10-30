@@ -4,7 +4,9 @@ var knex = Knex(knexConfig)
 
 //Create
 function createStudent(student, callback) {
-  return knex.raw(`INSERT INTO students (name, cohort) VALUES ('${student.name}', '${student.cohort}')`).asCallback(callback)
+  return knex('students')
+    .insert([{name: student.name,cohort: student.cohort}])
+    .asCallback(callback)
 }
 
 //Read
@@ -33,16 +35,16 @@ function deleteStudentById(id, callback) {
     .asCallback(callback)
 }
 
-// // createStudent FN
-// createStudent({name: "Ursula", cohort: "Piwakawaka-2016"}, function(err, res) {
-//   if(err) return console.log(err)
-//   console.log(res)
-// })
-//
-getStudentById(2, function(err, res) {
-  if (err) return console.log(err)
-  console.log(res);
+// createStudent FN
+createStudent({name: "Gaby", cohort: "Piwakawaka-2016"}, function(err, res) {
+  if(err) return console.log(err)
+  console.log(res)
 })
+//
+// getStudentById(2, function(err, res) {
+//   if (err) return console.log(err)
+//   console.log(res);
+// })
 
 // //UPDATE student
 // updateStudent({id:15, name:'Jasmine'}, function(err, res) {
