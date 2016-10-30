@@ -24,7 +24,12 @@ function getStudentById(id, callback) {
 
 //Update
 function updateStudent(student, callback) {
-  return knex.raw(`UPDATE students SET name='${student.name}' WHERE id=${student.id}`).asCallback(callback)
+  return knex('students')
+    .where('id',student.id)
+    .update({
+      name: student.name
+    })
+    .asCallback(callback)
 }
 
 //Delete
@@ -36,21 +41,21 @@ function deleteStudentById(id, callback) {
 }
 
 // createStudent FN
-createStudent({name: "Gaby", cohort: "Piwakawaka-2016"}, function(err, res) {
-  if(err) return console.log(err)
-  console.log(res)
-})
+// createStudent({name: "Gaby", cohort: "Piwakawaka-2016"}, function(err, res) {
+//   if(err) return console.log(err)
+//   console.log(res)
+// })
 //
 // getStudentById(2, function(err, res) {
 //   if (err) return console.log(err)
 //   console.log(res);
 // })
 
-// //UPDATE student
-// updateStudent({id:15, name:'Jasmine'}, function(err, res) {
-//   if(err) return console.log(err)
-//   console.log("updateStudent",res)
-// })
+//UPDATE student
+updateStudent({id:17, name:'Simon'}, function(err, res) {
+  if(err) return console.log(err)
+  console.log("updateStudent",res)
+})
 
 // //deleteStudentById
 // deleteStudentById(14, function(err,res){
