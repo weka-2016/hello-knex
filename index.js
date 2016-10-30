@@ -4,7 +4,7 @@ var knex = Knex(knexConfig)
 
 //Create
 function createStudent(student, callback) {
-
+  return knex.raw('INSERT INTO students (name, cohort) VALUES ("' + student.name + '", "' + student.cohort + '")').asCallback(callback)
 }
 
 //Read
@@ -14,7 +14,7 @@ function getAllStudents(callback) {
 
 //Read
 function getStudentById(id, callback) {
-return knex.raw('SELECT name, cohort FROM students WHERE id = ' + id).asCallback(callback)
+  return knex.raw('SELECT name, cohort FROM students WHERE id = ' + id).asCallback(callback)
 }
 
 //Update
@@ -38,5 +38,6 @@ function checkIfError(err, res){
   if(err) return console.log(err)
   console.log(res)
 }
+createStudent({name: 'Guillermo', cohort: 'Kokako'}, checkIfError)
 
-getStudentById(1, checkIfError)
+getStudentById(2, checkIfError)
