@@ -52,16 +52,16 @@ function deleteStudentById(id, callback) {
 // })
 
 //UPDATE student
-updateStudent({id:17, name:'Simon'}, function(err, res) {
-  if(err) return console.log(err)
-  console.log("updateStudent",res)
-})
-
-// //deleteStudentById
-// deleteStudentById(14, function(err,res){
-//   if (err) return console.log(err);
-//   console.log("deleteStudentById",res);
+// updateStudent({id:17, name:'Simon'}, function(err, res) {
+//   if(err) return console.log(err)
+//   console.log("updateStudent",res)
 // })
+
+//deleteStudentById
+deleteStudentById(20, function(err,res){
+  if (err) return console.log(err);
+  console.log("deleteStudentById",res);
+})
 
 
 //Let's try out the getAllStudents function.
