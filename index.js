@@ -9,12 +9,12 @@ function createStudent(student, callback) {
 
 //Read
 function getAllStudents(callback) {
-  return knex.select().from('students').asCallback(callback)
+  return knex.select().from('students')
 }
 
 //Read
 function getStudentById(id, callback) {
-  return knex('students').where('id', id).asCallback(callback)
+  return knex('students').where('id', id)
 }
 
 //Update
@@ -33,15 +33,21 @@ var ron = {
 }
 
 //Let's try out the getAllStudents function.
-// getAllStudents(function(err, res) {
-//   if(err) return  console.log(err)
-//   console.log(res)
-// })
+// getAllStudents()
+//   .then(function(students){
+//     console.log(students)
+//   })
+//   .catch(function(error){
+//     console.log(error)
+//   })
 
-// getStudentById(2, function(err, res) {
-//   if(err) return console.log(err)
-//   console.log(res);
-// })
+getStudentById(2)
+  .then(function(students){
+    console.log(students)
+  })
+  .catch(function(error){
+    console.log(error);
+  })
 
 // createStudent(ron, function(err, res) {
 //   if(err) return console.log(err)
