@@ -21,8 +21,8 @@ function createStudent(student, callback) {
 // })
 
 //Read
-function getAllStudents(callback) {
-  return knex.select().table('students').asCallback(callback)
+function getAllStudents() {
+  return knex.select().table('students')
 }
 
 //Read
@@ -57,8 +57,17 @@ function deleteStudentById(id, callback) {
 
 deleteStudentById(8, logIt)
 
-getAllStudents(logIt)
+// This is a promise
 
+getAllStudents()
+  .then((result) => {
+    console.log('the db', result)
+  })
+  .catch((error) => {
+    console.log('the error', error)
+  })
+
+// This is a callback
 function logIt (err, res) {
   if(err) return  console.log(err)
   console.log(res)
