@@ -27,7 +27,8 @@ function getAllStudents(callback) {
 
 //Read
 function getStudentById(id, callback) {
-  return knex('students').where('id', id).asCallback(callback)
+  return knex('students')
+    .where('id', id).asCallback(callback)
 }
 
 getStudentById(3, logIt)
@@ -46,10 +47,15 @@ updateStudent(myStudent, logIt)
 
 
 
+
 //Delete
 function deleteStudentById(id, callback) {
-
+  knex('students')
+    .where('id', id)
+    .del().asCallback(callback)
 }
+
+deleteStudentById(8, logIt)
 
 getAllStudents(logIt)
 
