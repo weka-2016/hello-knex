@@ -4,8 +4,11 @@ var knex = Knex(knexConfig)
 
 //Create
 function createStudent(student, callback) {
-  return knex.raw(`INSERT INTO students (name, cohort) VALUES ('${student.name}', '${student.cohort}')`).asCallback(callback)
+  return knex('students').insert(student).asCallback(callback)
 }
+// function createStudent(student, callback) {
+//   return knex.raw(`INSERT INTO students (name, cohort) VALUES ('${student.name}', '${student.cohort}')`).asCallback(callback)
+// }
 
 //Read
 function getAllStudents(callback) {
@@ -14,8 +17,11 @@ function getAllStudents(callback) {
 
 //Read
 function getStudentById(id, callback) {
-  return knex.raw(`SELECT * FROM students WHERE id = '${id}'`).asCallback(callback)
+  return knex('students').where('id', id).asCallback(callback)
 }
+// function getStudentById(id, callback) {
+//   return knex.raw(`SELECT * FROM students WHERE id = '${id}'`).asCallback(callback)
+// }
 
 //Update
 function updateStudent(student, callback) {
@@ -27,13 +33,13 @@ function deleteStudentById(id, callback) {
  return knex.raw(`DELETE FROM students WHERE id = '${id}'`).asCallback(callback)
 }
 
-
+//
 // createStudent({name: 'Pouramua Kupenga', cohort: 'Piwakawaka-2016', }, function( err, res) {
 //   if (err) return console.log(err)
 //   console.log(res);
 // })
 
-getStudentById('1', function (err, res) {
+getStudentById('6', function (err, res) {
   if (err) return console.log(err)
   console.log(res);
 })
@@ -43,10 +49,10 @@ updateStudent({id: 6, name: 'Chris Daynes', cohort: 'Piwakawaka-2016'}, function
   console.log(res);
 })
 
-deleteStudentById('8', function(err, res) {
-  if (err) return console.log(err)
-  console.log('deleteStudentById', res);
-})
+// deleteStudentById('8', function(err, res) {
+//   if (err) return console.log(err)
+//   console.log(res);
+// })
 
 getAllStudents(function(err, res) {
   if(err) return  console.log(err)
