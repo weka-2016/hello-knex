@@ -23,7 +23,7 @@ function getStudentById(id, callback) {
 
 //Update
 function updateStudent(student, callback) {
-  return knex.select('student').where('name','=','Misha').update({name: 'Alice'}).asCallback(callback)
+  return knex('students').where('name','=','Mischa').update({name: 'Alice'}).asCallback(callback)
 }
 
 //Delete
@@ -48,7 +48,10 @@ getStudentById(4, function(err, res){
   console.log(res);
 })
 
-
+updateStudent(function(err, res){
+  if (err) return console.log(err)
+  console.log(res);
+})
 
 //  function checkForError(err, res){
 //   if (err) return console.log(err)
