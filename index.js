@@ -20,6 +20,11 @@ var knex = Knex(knexConfig)
 function getAllStudents(id,callback) {
   return knex.select('*').table('students').asCallback(callback)
 }
+//Let's try out the getAllStudents function.
+getAllStudents(function(err, res) {
+  if(err) return  console.log(err)
+  console.log(res)
+})
 
 var id = 3;
 //Read
@@ -33,26 +38,26 @@ var id = 3;
 //     console.log(res)
 // })
 
-//Update 
-var studentName = "Bobby"
-function updateStudent(studentName, callback) {
-    knex.raw(`UPDATE students SET name = "${studentName}" WHERE id = 3;`).asCallback(callback)
-}
-
-
-updateStudent(studentName,function(err,res){
-  if(err) return  console.log(err)
-  console.log(res)
-})
+//Update
+// var studentName = "Bobby"
+// function updateStudent(studentName, callback) {
+//     knex.raw(`UPDATE students SET name = "${studentName}" WHERE id = 3;`).asCallback(callback)
+// }
+//
+//
+// updateStudent(studentName,function(err,res){
+//   if(err) return  console.log(err)
+//   console.log(res)
+// })
 
 //Delete
 function deleteStudentById(id, callback) {
-
+  return knex('students')
+    .where('id',id)
+    .del().asCallback(callback)
 }
 
-
-//Let's try out the getAllStudents function.
-getAllStudents(function(err, res) {
-  if(err) return  console.log(err)
-  console.log(res)
+deleteStudentById(id,function(err,res){
+      if(err) return  console.log(err)
+      console.log(res)
 })
