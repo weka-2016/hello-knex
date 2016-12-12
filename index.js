@@ -18,12 +18,12 @@ function getAllStudents(callback) {
   return knex.select().table('students').asCallback(callback)
 }
 
-// //Read
-// function getStudentById(id, callback) {
-//   return knex ('students')
-//   .select('id', [1])
-//   .asCallback(callback)
-// }
+//Read
+function getStudentById(id, callback) {
+  return knex ('students')
+  .where('id', id)
+  .asCallback(callback);
+}
 
 //Update
 function updateStudent(student, callback) {
@@ -61,7 +61,7 @@ updateStudent(function(err,res) {
   console.log(res)
 })
 
-// getStudentById(id, function(err, res){
-//   if(err) return console.log(err)
-//   console.log(id)
-// })
+getStudentById('10', function(err, res){
+  if(err) return console.log(err)
+  console.log(res)
+})
