@@ -28,20 +28,20 @@ function updateStudent(student, callback) {
 
 //Delete
 function deleteStudentById(id, callback) {
-
+  return knex('students').where('id','=', [id]).del().asCallback(callback)
 }
 
 
 //Let's try out the getAllStudents function.
-// getAllStudents(function(err, res) {
-//   if(err) return  console.log(err)
-//   console.log(res)
-// })
+getAllStudents(function(err, res) {
+  if(err) return  console.log(err)
+  console.log(res)
+})
 
-// createStudent(function(err, res){
-//   if (err) return console.log(err)
-//   console.log(res);
-// })
+createStudent(function(err, res){
+  if (err) return console.log(err)
+  console.log(res);
+})
 
 getStudentById(4, function(err, res){
   if (err) return console.log(err)
@@ -53,6 +53,10 @@ updateStudent(function(err, res){
   console.log(res);
 })
 
+deleteStudentById(2 , function(err, res){
+  if (err) return console.log(err)
+  console.log(res);
+})
 //  function checkForError(err, res){
 //   if (err) return console.log(err)
 //   console.log(res);
