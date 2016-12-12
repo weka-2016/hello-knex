@@ -21,25 +21,26 @@ function getAllStudents(id,callback) {
   return knex.select('*').table('students').asCallback(callback)
 }
 
-var id = 1;
+var id = 3;
 //Read
-function getStudentById(id, callback) {
-// return knex.select().table('students').asCallback(callback)
-knex.raw('SELECT * FROM students WHERE id = ?;', [id]).asCallback(callback)
-}
-//call the student by ID function
-getStudentById(id,function(err,res){
-  if(err) return  console.log(err)
-  console.log(res)
-})
+// function getStudentById(id, callback) {
+//   // return knex.select().table('students').asCallback(callback)
+//   knex.raw('SELECT * FROM students WHERE id = ?;', [id]).asCallback(callback)
+// }
+// //call the student by ID function
+// getStudentById(id,function(err,res){
+//     if(err) return  console.log(err)
+//     console.log(res)
+// })
 
-//Update ...not working
-var newStudent = "hector,weka-2010"
-function updateStudent(newStudent, callback) {
-knex.raw('INSERT INTO students (name, cohort)VALUES ('+newStudent+');')
+//Update 
+var studentName = "Bobby"
+function updateStudent(studentName, callback) {
+    knex.raw(`UPDATE students SET name = "${studentName}" WHERE id = 3;`).asCallback(callback)
 }
 
-updateStudent(newStudent,function(err,res){
+
+updateStudent(studentName,function(err,res){
   if(err) return  console.log(err)
   console.log(res)
 })
