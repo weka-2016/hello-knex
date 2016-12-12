@@ -38,7 +38,10 @@ function updateStudent(student, callback) {
 
 //Delete
 function deleteStudentById(id, callback) {
-
+  return knex ('students')
+  .where('id', id)
+  .delete()
+  .asCallback(callback)
 }
 
 //*****CALL ALL FUNCTIONS**********//
@@ -61,7 +64,14 @@ updateStudent(function(err,res) {
   console.log(res)
 })
 
+//call the get student by ID function
 getStudentById('10', function(err, res){
+  if(err) return console.log(err)
+  console.log(res)
+})
+
+//call delete student by ID function
+deleteStudentById('13', function(err, res){
   if(err) return console.log(err)
   console.log(res)
 })
